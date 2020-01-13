@@ -10,7 +10,7 @@ const ImgContainer = styled.div`
   flex-basis: calc(33.333% - 20px);
   margin: 10px;
   cursor: pointer;
-  height: 350px;
+  height: 400px;
   transition: 0.5s all ease-in;
 `;
 const ImgIcons = styled.div`
