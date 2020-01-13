@@ -3,48 +3,6 @@ import styled from 'styled-components';
 import './FaceRecognition.css';
 import SingleImage from './Image.js';
 
-
-const feedsource = [
-  {
-    source:
-      'https://instagram.fyvr4-1.fna.fbcdn.net/v/t51.2885-15/e35/80474108_2292172297742904_8720493052155632384_n.jpg?_nc_ht=instagram.fyvr4-1.fna.fbcdn.net&_nc_cat=100&_nc_ohc=fMXxL6HDDeIAX9-KVbI&oh=475fcaa302eff54d91cc3c07293bb632&oe=5EA8C484',
-    likes: '43',
-    comments: '3',
-    isVideo: false,
-    id: 0,
-  },
-  {
-    source: 'https://imgsv.imaging.nikon.com/lineup/dslr/df/img/sample/img_01.jpg',
-    likes: '313',
-    comments: '10',
-    isVideo: true,
-    id: 1,
-  },
-  {
-    source: 'https://imgsv.imaging.nikon.com/lineup/dslr/df/img/sample/img_01.jpg',
-    likes: '29',
-    comments: '2',
-    isVideo: false,
-    id: 2,
-  },
-  {
-    source:
-      'https://scontent-lhr3-1.cdninstagram.com/vp/3c9520014265a02a446841b20c529066/5D188BE1/t51.2885-15/e35/c135.0.810.810/s240x240/14294939_1218250054909378_1762757626_n.jpg?_nc_ht=scontent-lhr3-1.cdninstagram.com',
-    likes: '18',
-    comments: '2',
-    isVideo: false,
-    id: 3,
-  },
-  {
-    source:
-      'https://scontent-lhr3-1.cdninstagram.com/vp/34afcdf7b06fc1f4a6b1a0e7985ebe1a/5D24FDF9/t51.2885-15/e35/c135.0.810.810/s480x480/14240669_1005823466206583_2103344102_n.jpg?_nc_ht=scontent-lhr3-1.cdninstagram.com',
-    likes: '30',
-    comments: '4',
-    isVideo: false,
-    id: 4,
-  },
-];
-
 const data = [
   {
     id: 0,
@@ -212,19 +170,8 @@ const ProfileDetailsUsername = styled.div`
   align-items: center;
   justify-content: center;
 `;
-const EditProfileButton = styled.div`
-  background-color: transparent;
-  border: 1px solid #dbdbdb;
-  color: #262626;
-  border-radius: 4px;
-  cursor: pointer;
-  font-weight: 600;
-  padding: 5px 9px;
-  text-transform: capitalize;
-  font-size: 14px;
-  margin-left: 20px;
-`;
-const HeadingThreeText = styled.h3``;
+// const HeadingThreeText = styled.h3``;
+const HeadingTwoText = styled.h2``;
 const ParagraphText = styled.p`
   margin-right: 25px;
 `;
@@ -241,7 +188,7 @@ const ImagesWrapper = styled.div`
   flex-wrap: wrap;
 `;
 
-const FaceRecognition = () => {
+const FaceRecognition = ({ username }) => {
   return (
     <ProfileContainer>
       <ProfileDetails>
@@ -250,12 +197,11 @@ const FaceRecognition = () => {
         </ProfileDetailsLeft>
         <ProfileDetailsRight>
           <ProfileDetailsUsername>
-            <HeadingThreeText>yomieluwande</HeadingThreeText>
-            <EditProfileButton>Edit profile</EditProfileButton>
+            <HeadingTwoText>{username}</HeadingTwoText>
           </ProfileDetailsUsername>
           <ProfileDetailsMeta>
             <ParagraphText>
-              <strong>5</strong> posts
+              <strong>12</strong> posts
             </ParagraphText>
             <ParagraphText>
               <strong>296</strong> followers
@@ -266,7 +212,7 @@ const FaceRecognition = () => {
           </ProfileDetailsMeta>
           <ProfileDetailsName>
             <ParagraphText>
-              <strong>Yomi</strong>
+              <strong>About Me</strong>
             </ParagraphText>
           </ProfileDetailsName>
         </ProfileDetailsRight>

@@ -10,7 +10,7 @@ const ImgContainer = styled.div`
   flex-basis: calc(33.333% - 20px);
   margin: 10px;
   cursor: pointer;
-  height:400px;
+  height: 350px;
   transition: 0.5s all ease-in;
 `;
 const ImgIcons = styled.div`
@@ -33,9 +33,6 @@ const ImgMeta = styled.div`
   right: 0;
   bottom: 0;
   left: 0;
-  ${ImgContainer}:hover & {
-    display: flex !important;
-  }
 `;
 const Img = styled.img`
   cursor: pointer;
@@ -43,9 +40,9 @@ const Img = styled.img`
 `;
 
 
-const SwatchContainer = styled.div`
+// const SwatchContainer = styled.div`
 
-`
+// `
 
 const SwatchColor = styled.img`
     padding: 10px ;
@@ -53,23 +50,23 @@ const SwatchColor = styled.img`
     width: 50px
 `
 
-function Image({ image, hexes, key }) {
-    return (
-        <ImgContainer>
-            <Img src={image} />
-            <ImgMeta>
-                <ImgIcons>
-                    {/* {image.isVideo ? <Play /> : <Heart />} {image.likes} */}
-                </ImgIcons>
-                <ImgIcons>
-                    {/* <Comment /> {image.comments} */}
-                </ImgIcons>
-            </ImgMeta>
-            {hexes.map(item =>
-                <SwatchColor style={{ 'backgroundColor': item }} key={key} />
-            )
-            }
-        </ImgContainer>
-    );
+function Image({ image, hexes }) {
+  return (
+    <ImgContainer>
+      <Img src={image} />
+      <ImgMeta>
+        <ImgIcons>
+          {/* {image.isVideo ? <Play /> : <Heart />} {image.likes} */}
+        </ImgIcons>
+        <ImgIcons>
+          {/* <Comment /> {image.comments} */}
+        </ImgIcons>
+      </ImgMeta>
+      {hexes.map((item, i) =>
+        <SwatchColor style={{ 'backgroundColor': item }} key={i} />
+      )
+      }
+    </ImgContainer>
+  );
 }
 export default Image;
