@@ -18,11 +18,11 @@ const part_options =
 }
 
 const intialState = {
-  input: 'sampleInstagramAccount',
-  imageUrl: 'sampleInstagramAccount',
-  finalUsername: 'sampleInstagramAccount',
+  input: '',
+  imageUrl: '',
+  finalUsername: '',
   box: {},
-  images: {},
+  images: [],
   route: 'signin',
   isSignedIn: true,
   user: {
@@ -94,21 +94,22 @@ class App extends Component {
 
     if (this.state.input !== '') {
 
-      this.setState({ finalUsername: this.state.input + " (to be released)" })
-      this.setState({ imageUrl: this.state.input });
-      //   fetch(`http://127.0.0.1:5000/api/palettes?user=${this.state.input}`, {
-      //     method: 'GET',
-      //     headers: { 'Content-Type': 'application/json' }
-      //   }).then(response => response.json())
-      //     .then((response) => {
-      //       if (response != null) {
+      this.setState({ finalUsername: this.state.input })
 
-
-      //       }
-      //       console.log(response);
-      //     }).catch((err) => {
-      //       console.log(err);
-      //     })
+      fetch(`https://couleur-be.herokuapp.com/api/palettes?user=${this.state.input}`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+      }).then(response => response.json())
+        .then((response) => {
+          if (response != null) {
+            // console.log(response);
+            // console.log(response.result);
+            this.setState({ images: response.result })
+          }
+          // console.log(response);
+        }).catch((err) => {
+          console.log(err);
+        })
     }
   }
   onRouteChange = (route) => {
@@ -134,7 +135,7 @@ class App extends Component {
         <div>
 
           <ImageLinkForm onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit} />
-          <FaceRecognition username={this.state.finalUsername} />
+          <FaceRecognition username={this.state.finalUsername} datain={this.state.images} />
         </div>
         {/* : (
           this.state.route === 'signin'
