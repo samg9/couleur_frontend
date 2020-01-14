@@ -37,7 +37,7 @@ const ImgMeta = styled.div`
 const Img = styled.img`
   cursor: pointer;
   width: 100%;
-  height: calc(75% - 20px);
+  height: calc(75% - 50px);
 `;
 
 
