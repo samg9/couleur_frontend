@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import './FaceRecognition.css';
 import SingleImage from './Image.js';
 
-const data = [
+var data = [
   {
     id: 0,
     hexes: [
@@ -143,28 +143,28 @@ const ProfileContainer = styled.div`
   width: 100%;
   margin: 20px auto;
 `;
-const ProfileDetails = styled.div`
-  display: flex;
-`;
-const ProfileDetailsLeft = styled.div`
-  margin-right: 40px;
-  width: 300px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-`;
-const ProfileDetailsRight = styled.div`
-  display: flex;
-  align-items: end;
-  justify-content: center;
-  flex-direction: column;
-`;
-const ProfileImage = styled.img`
-  border-radius: 50%;
-  width: 150px;
-  border: 1px solid #ccc;
-  padding: 5px;
-`;
+// const ProfileDetails = styled.div`
+//   display: flex;
+// `;
+// const ProfileDetailsLeft = styled.div`
+//   margin-right: 40px;
+//   width: 300px;
+//   display: flex;
+//   align-items: center;
+//   justify-content: center;
+// `;
+// const ProfileDetailsRight = styled.div`
+//   display: flex;
+//   align-items: end;
+//   justify-content: center;
+//   flex-direction: column;
+// `;
+// const ProfileImage = styled.img`
+//   border-radius: 50%;
+//   width: 150px;
+//   border: 1px solid #ccc;
+//   padding: 5px;
+// `;
 const ProfileDetailsUsername = styled.div`
   display: flex;
   align-items: center;
@@ -172,33 +172,32 @@ const ProfileDetailsUsername = styled.div`
 `;
 // const HeadingThreeText = styled.h3``;
 const HeadingTwoText = styled.h2``;
-const ParagraphText = styled.p`
-  margin-right: 25px;
-`;
-const ProfileDetailsMeta = styled.div`
-  display: flex;
-  justify-content: center;
-`;
-const ProfileDetailsName = styled.div`
-  text-align: left;
-`;
+// const ParagraphText = styled.p`
+//   margin-right: 25px;
+// `;
+// const ProfileDetailsMeta = styled.div`
+//   display: flex;
+//   justify-content: center;
+// `;
+// const ProfileDetailsName = styled.div`
+//   text-align: left;
+// `;
 const ImagesWrapper = styled.div`
   margin-top: 50px;
   display: flex;
   flex-wrap: wrap;
 `;
 
-const FaceRecognition = ({ username }) => {
+const FaceRecognition = ({ username, datain }) => {
+  data = datain;
   return (
     <ProfileContainer>
-      <ProfileDetails>
+      {/* <ProfileDetails>
         <ProfileDetailsLeft>
           <ProfileImage src="https://api.adorable.io/avatars/285/abott@adorable.png" />
         </ProfileDetailsLeft>
         <ProfileDetailsRight>
-          <ProfileDetailsUsername>
-            <HeadingTwoText>{username}</HeadingTwoText>
-          </ProfileDetailsUsername>
+          
           <ProfileDetailsMeta>
             <ParagraphText>
               <strong>12</strong> posts
@@ -216,10 +215,13 @@ const FaceRecognition = ({ username }) => {
             </ParagraphText>
           </ProfileDetailsName>
         </ProfileDetailsRight>
-      </ProfileDetails>
+      </ProfileDetails> */}
+      <ProfileDetailsUsername>
+        <HeadingTwoText>{username}</HeadingTwoText>
+      </ProfileDetailsUsername>
       <ImagesWrapper>
-        {data.map(item =>
-          <SingleImage image={item.source} hexes={item.hexes} key={item.id} />
+        {data.map((item, i) =>
+          <SingleImage image={item.source} hexes={item.hexes} key={i} />
         )
         }
       </ImagesWrapper>
