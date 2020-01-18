@@ -3,6 +3,7 @@ import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
 import FaceRecognition from './components/FaceRecognition/FaceRecognition';
 import './App.css';
 import Particles from 'react-particles-js';
+import { MetroSpinner } from "react-spinners-kit";
 
 const part_options =
 {
@@ -25,6 +26,8 @@ const intialState = {
   images: [],
   route: 'signin',
   isSignedIn: true,
+  loading: false,
+  error: false,
   user: {
 
     id: '',
@@ -35,7 +38,6 @@ const intialState = {
     joined: ''
   }
 }
-
 class App extends Component {
   constructor() {
     super();
@@ -90,12 +92,14 @@ class App extends Component {
   }
 
 
+
   onButtonSubmit = () => {
 
     if (this.state.input !== '') {
-
-      this.setState({ finalUsername: this.state.input })
-
+      this.setState({
+        loading: true,
+        error: false,
+      })
       fetch(`https://couleur-be.herokuapp.com/api/palettes?user=${this.state.input}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
@@ -104,14 +108,24 @@ class App extends Component {
           if (response != null) {
             // console.log(response);
             // console.log(response.result);
+            this.setState({
+              loading: false
+            })
+            this.setState({ finalUsername: this.state.input })
             this.setState({ images: response.result })
           }
           // console.log(response);
         }).catch((err) => {
-          console.log(err);
+          this.setState({
+            error: true,
+            loading: intialState.loading,
+            finalUsername: intialState.finalUsername,
+            images: []
+          })
         })
     }
   }
+
   onRouteChange = (route) => {
     if (route === 'signout') {
       this.setState(intialState);
@@ -133,9 +147,15 @@ class App extends Component {
         {/* <Navigation isSignedIn={this.state.isSignedIn} onRouteChange={this.onRouteChange} /> */}
         {/* {this.state.route === 'home' */}
         <div>
-
           <ImageLinkForm onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit} />
+          <div id="inner">
+            <MetroSpinner
+              size={150}
+              loading={this.state.loading}
+            />
+          </div>
           <FaceRecognition username={this.state.finalUsername} datain={this.state.images} />
+          {this.state.error ? <h2> Oops! Something isnt right. Make sure the profile is public</h2> : ""}
         </div>
         {/* : (
           this.state.route === 'signin'
