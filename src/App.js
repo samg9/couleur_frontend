@@ -28,6 +28,7 @@ const intialState = {
   isSignedIn: true,
   loading: false,
   error: false,
+  errorMsg: '',
   user: {
 
     id: '',
@@ -106,21 +107,28 @@ class App extends Component {
       }).then(response => response.json())
         .then((response) => {
           if (response != null) {
-            // console.log(response);
-            // console.log(response.result);
+            if (response.result.length < 1) {
+              this.setState({
+                errorMsg: 'privateAccount',
+                error: true,
+                loading: false,
+                finalUsername: intialState.finalUsername,
+                images: intialState.images
+              })
+            }
             this.setState({
-              loading: false
+              loading: false,
+              finalUsername: this.state.input,
+              images: response.result
             })
-            this.setState({ finalUsername: this.state.input })
-            this.setState({ images: response.result })
           }
-          // console.log(response);
-        }).catch((err) => {
+        }).catch(() => {
           this.setState({
+            errorMsg: 'notfound',
             error: true,
             loading: intialState.loading,
             finalUsername: intialState.finalUsername,
-            images: []
+            images: intialState.images
           })
         })
     }
@@ -155,7 +163,12 @@ class App extends Component {
             />
           </div>
           <FaceRecognition username={this.state.finalUsername} datain={this.state.images} />
-          {this.state.error ? <h2> Oops! Something isnt right. Make sure the profile is public</h2> : ""}
+          {this.state.error === true ?
+            (this.state.errorMsg === 'notfound' ?
+              <h2> Oops! Something isnt right. Make sure the profile is EXISts</h2> :
+              <h2> Oops! Something isnt right. Make sure the profile is public</h2>)
+            : ""}
+
         </div>
         {/* : (
           this.state.route === 'signin'
