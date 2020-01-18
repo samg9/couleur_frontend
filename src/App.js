@@ -99,6 +99,8 @@ class App extends Component {
     if (this.state.input !== '') {
       this.setState({
         loading: true,
+        finalUsername: intialState.finalUsername,
+        images: intialState.images,
         error: false,
       })
       fetch(`https://couleur-be.herokuapp.com/api/palettes?user=${this.state.input}`, {
