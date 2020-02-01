@@ -171,7 +171,13 @@ const ProfileDetailsUsername = styled.div`
   justify-content: center;
 `;
 // const HeadingThreeText = styled.h3``;
-const HeadingTwoText = styled.h2``;
+const HeadingTwoText = styled.h2`
+  color: white;
+  font-weight: bold;
+  font-size: 2em;
+  align-items: center;
+  justify-content: center;
+`;
 // const ParagraphText = styled.p`
 //   margin-right: 25px;
 // `;

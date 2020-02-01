@@ -9,7 +9,7 @@ const part_options =
 {
   particles: {
     number: {
-      value: 30,
+      value: 20,
       density: {
         enable: true,
         value_area: 800
@@ -167,7 +167,7 @@ class App extends Component {
           <FaceRecognition username={this.state.finalUsername} datain={this.state.images} />
           {this.state.error === true ?
             (this.state.errorMsg === 'notfound' ?
-              <h2> Oops! Something isnt right. Make sure the profile is EXISts</h2> :
+              <h2> Oops! Something isnt right. Make sure the profile exists</h2> :
               <h2> Oops! Something isnt right. Make sure the profile is public</h2>)
             : ""}
 

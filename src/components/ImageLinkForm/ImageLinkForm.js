@@ -5,11 +5,11 @@ const ImageLinkForm = ({ onInputChange, onButtonSubmit }) => {
 
   return (
     <div>
-      <h1>Couleur (beta)</h1>
-      <b>Displays 5 color palette for each image</b>
-      <p className='f3'>
-        {'Enter instagram username'}
-      </p>
+      <b className=' w-80 f1 white light-purple'>Couleur (beta)</b>
+      <h4 className='light-purple'>Displays 5 color palette for each post on a public instagram account</h4>
+      <b className=' w-80 f3 white light-purple'>
+        Enter instagram username
+      </b>
 
 
       <div className='center'>
