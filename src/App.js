@@ -20,24 +20,15 @@ const part_options =
 
 const intialState = {
   input: '',
+  paletteSize: 6,
   imageUrl: '',
   finalUsername: '',
-  box: {},
   images: [],
   route: 'signin',
   isSignedIn: true,
   loading: false,
   error: false,
   errorMsg: '',
-  user: {
-
-    id: '',
-    name: '',
-    email: '',
-    password: '',
-    entires: 0,
-    joined: ''
-  }
 }
 class App extends Component {
   constructor() {
@@ -45,57 +36,15 @@ class App extends Component {
     this.state = intialState;
   }
 
-
-  loadUser = (data) => {
-    this.setState({
-      user: {
-
-        id: data.id,
-        name: data.name,
-        email: data.email,
-        entries: data.entries,
-        joined: data.joined
-
-      }
-    })
-
-  }
-
-
-
-  findFaceLocation = (data) => {
-    console.log(data);
-    const clariFace = data.outputs[0].data.regions[0].region_info.bounding_box;
-    const image = document.getElementById('inputimage');
-    const width = Number(image.width);
-    const height = Number(image.height);
-    //console.log(width,height) ;
-    return {
-      leftCol: clariFace.left_col * width,
-      topRow: clariFace.top_row * height,
-      rightCol: width - (clariFace.right_col * width),
-      bottomRow: height - (clariFace.bottom_row * height)
-    }
-  }
-
-  displayFaceBox = (box) => {
-    // console.log(box);
-    this.setState({ box: box });
-  }
-
-  displayFaceBox = (images) => {
-    // console.log(box);
-    this.setState({ images: images });
-  }
-
   onInputChange = (event) => {
     this.setState({ input: event.target.value });
   }
 
-
+  onPaletteSizeChange = (event) => {
+    this.setState({ paletteSize: event.target.value });
+  }
 
   onButtonSubmit = () => {
-
     if (this.state.input !== '') {
       this.setState({
         loading: true,
@@ -103,7 +52,7 @@ class App extends Component {
         images: intialState.images,
         error: false,
       })
-      fetch(`https://couleur-be.herokuapp.com/api/palettes?user=${this.state.input}`, {
+      fetch(`https://couleur-be.herokuapp.com/api/palettes?user=${this.state.input}&pal_size=${this.state.paletteSize}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' }
       }).then(response => response.json())
@@ -146,7 +95,6 @@ class App extends Component {
   }
 
   render() {
-    //const {isSignedIn, imageUrl , route , box } =this.state ; //remove this dot states for cleaning
     return (
 
       <div className="App">
@@ -154,10 +102,8 @@ class App extends Component {
         <Particles className='particles'
           params={part_options}
         />
-        {/* <Navigation isSignedIn={this.state.isSignedIn} onRouteChange={this.onRouteChange} /> */}
-        {/* {this.state.route === 'home' */}
         <div>
-          <ImageLinkForm onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit} />
+          <ImageLinkForm onPaletteSizeChange={this.onPaletteSizeChange} onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit} />
           <div id="inner">
             <MetroSpinner
               size={150}
@@ -172,15 +118,6 @@ class App extends Component {
             : ""}
 
         </div>
-        {/* : (
-          this.state.route === 'signin'
-              ? <Signin loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
-        : <Register loadUser={this.loadUser} onRouteChange={this.onRouteChange} />
-        ) */}
-
-        {/* } */}
-
-
       </div>
     );
   }
