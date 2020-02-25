@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
-import FaceRecognition from './components/FaceRecognition/FaceRecognition';
+import ProfileGrid from './components/ProfileGrid/ProfileGrid';
 import './App.css';
 import Particles from 'react-particles-js';
 import { MetroSpinner } from "react-spinners-kit";
@@ -110,7 +110,7 @@ class App extends Component {
               loading={this.state.loading}
             />
           </div>
-          <FaceRecognition username={this.state.finalUsername} datain={this.state.images} />
+          <ProfileGrid username={this.state.finalUsername} datain={this.state.images} />
           {this.state.error === true ?
             (this.state.errorMsg === 'notfound' ?
               <h2> Oops! Something isnt right. Make sure the profile exists</h2> :

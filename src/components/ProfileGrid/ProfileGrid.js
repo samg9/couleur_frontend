@@ -1,6 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
-import './FaceRecognition.css';
+import './ProfileGrid.css';
 import SingleImage from './Image.js';
 
 var data = [
@@ -141,34 +141,14 @@ var data = [
 const ProfileContainer = styled.div`
   max-width: 1010px;
   width: 100%;
-  margin: 20px auto;
+  margin: 5px auto;
 `;
-// const ProfileDetails = styled.div`
-//   display: flex;
-// `;
-// const ProfileDetailsLeft = styled.div`
-//   margin-right: 40px;
-//   width: 300px;
-//   display: flex;
-//   align-items: center;
-//   justify-content: center;
-// `;
-// const ProfileDetailsRight = styled.div`
-//   display: flex;
-//   align-items: end;
-//   justify-content: center;
-//   flex-direction: column;
-// `;
-// const ProfileImage = styled.img`
-//   border-radius: 50%;
-//   width: 150px;
-//   border: 1px solid #ccc;
-//   padding: 5px;
-// `;
+
 const ProfileDetailsUsername = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  margin: 5px auto;
 `;
 // const HeadingThreeText = styled.h3``;
 const HeadingTwoText = styled.h2`
@@ -177,61 +157,38 @@ const HeadingTwoText = styled.h2`
   font-size: 2em;
   align-items: center;
   justify-content: center;
+  margin: 1px auto;
+`
+  ;
+const HeadingFourText = styled.h5`
+  color: white;
+  font-size: 1em;
+  align-items: center;
+  justify-content: center;
 `;
-// const ParagraphText = styled.p`
-//   margin-right: 25px;
-// `;
-// const ProfileDetailsMeta = styled.div`
-//   display: flex;
-//   justify-content: center;
-// `;
-// const ProfileDetailsName = styled.div`
-//   text-align: left;
-// `;
+
 const ImagesWrapper = styled.div`
   margin-top: 50px;
   display: flex;
   flex-wrap: wrap;
+  margin: 5px auto;
 `;
 
-const FaceRecognition = ({ username, datain }) => {
-  data = datain;
+const ProfileGrid = ({ username, datain, copyHexes }) => {
+  data = datain; //uncomment to test 
   return (
     <ProfileContainer>
-      {/* <ProfileDetails>
-        <ProfileDetailsLeft>
-          <ProfileImage src="https://api.adorable.io/avatars/285/abott@adorable.png" />
-        </ProfileDetailsLeft>
-        <ProfileDetailsRight>
-          
-          <ProfileDetailsMeta>
-            <ParagraphText>
-              <strong>12</strong> posts
-            </ParagraphText>
-            <ParagraphText>
-              <strong>296</strong> followers
-            </ParagraphText>
-            <ParagraphText>
-              <strong>269</strong> following
-            </ParagraphText>
-          </ProfileDetailsMeta>
-          <ProfileDetailsName>
-            <ParagraphText>
-              <strong>About Me</strong>
-            </ParagraphText>
-          </ProfileDetailsName>
-        </ProfileDetailsRight>
-      </ProfileDetails> */}
+      <HeadingFourText>Click on an image to copy the palette values!</HeadingFourText>
       <ProfileDetailsUsername>
         <HeadingTwoText>{username}</HeadingTwoText>
       </ProfileDetailsUsername>
       <ImagesWrapper>
         {data.map((item, i) =>
-          <SingleImage image={item.source} hexes={item.hexes} key={i} />
+          <SingleImage image={item.source} hexes={item.hexes} key={i} copyHexes={copyHexes} />
         )
         }
       </ImagesWrapper>
     </ProfileContainer>
   );
 }
-export default FaceRecognition;
+export default ProfileGrid;

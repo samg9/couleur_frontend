@@ -1,9 +1,6 @@
-// Image.js
 import React from 'react';
 import styled from 'styled-components';
-// import { ReactComponent as Comment } from '../comment.svg';
-// import { ReactComponent as Play } from '../play.svg';
-// import { ReactComponent as Heart } from '../heart.svg';
+
 const ImgContainer = styled.div`
   position: relative;
   flex-basis: 100%;
@@ -41,10 +38,6 @@ const Img = styled.img`
 `;
 
 
-// const SwatchContainer = styled.div`
-
-// `
-
 const SwatchColor = styled.img`
     padding: 10px ;
     border: 1px solid white ;
@@ -53,8 +46,14 @@ const SwatchColor = styled.img`
 
 function Image({ image, hexes }) {
   return (
-    <ImgContainer>
-      <Img src={image} />
+    <ImgContainer >
+
+      <Img src={image} onClick={() => { navigator.clipboard.writeText(hexes) }}
+      />
+      {/* {copySuccess ? <div className="alert alert-success">
+        <strong>Success!</strong> Indicates a successful or positive action.
+                    </div>
+        : ""} */}
       <ImgMeta>
         <ImgIcons>
           {/* {image.isVideo ? <Play /> : <Heart />} {image.likes} */}
