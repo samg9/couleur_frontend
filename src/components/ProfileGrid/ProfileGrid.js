@@ -178,7 +178,7 @@ const ProfileGrid = ({ username, datain, copyHexes }) => {
   data = datain; //uncomment to test 
   return (
     <ProfileContainer>
-      <HeadingFourText>Click on an image to copy the palette values!</HeadingFourText>
+      {username === "" ? "" : <HeadingFourText>Click on an image to copy the palette values!</HeadingFourText>}
       <ProfileDetailsUsername>
         <HeadingTwoText>{username}</HeadingTwoText>
       </ProfileDetailsUsername>
