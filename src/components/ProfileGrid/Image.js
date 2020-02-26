@@ -4,8 +4,8 @@ import styled from 'styled-components';
 const ImgContainer = styled.div`
   position: relative;
   flex-basis: 100%;
-  flex-basis: calc(33.333% - 20px);
-  margin: 1.75em auto;
+  flex-basis: calc(33.333% - 10px);
+  margin: 3.75em auto;
   cursor: pointer;
   height: 400px;
   transition: 0.5s all ease-in;
@@ -13,20 +13,20 @@ const ImgContainer = styled.div`
 const Img = styled.img`
   cursor: pointer;
   width: 100%;
-  height: calc(75% - 50px);
+  height: calc(85% - 50px);
   margin: 5px auto;
 `;
 const SwatchColor = styled.img`
     padding: 10px ;
     border: 1px solid white ;
-    width: 50px;
+    width: 3em;
 `
 
-function Image({ image, hexes }) {
+function Image({ copy, image, hexes }) {
   return (
     <ImgContainer >
 
-      <Img src={image} onClick={() => { navigator.clipboard.writeText(hexes) }}
+      <Img src={image} onClick={() => copy(hexes)}
       />
       {hexes.map((item, i) =>
         <SwatchColor style={{ 'backgroundColor': item }} key={i} />

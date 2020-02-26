@@ -15,6 +15,7 @@ var data = [
       "#766c63",
       "#766c63",
       "#766c63",
+      "#766c63",
       "#ece5dc"
     ],
     source: 'https://instagram.fyvr4-1.fna.fbcdn.net/v/t51.2885-15/e35/81957336_2445921395646650_4777805263679442706_n.jpg?_nc_ht=instagram.fyvr4-1.fna.fbcdn.net&_nc_cat=102&_nc_ohc=6R3tbxbQKcoAX-sLiEj&oh=eb5e6f1f2a659c91e69453f87ca003ba&oe=5E954A5A'
@@ -25,6 +26,7 @@ var data = [
       "#b1bfcc",
       "#1d1e22",
       "#9fb1c0",
+      "#61707d",
       "#61707d",
       "#61707d",
       "#61707d",
@@ -41,6 +43,7 @@ var data = [
       "#c3a46a",
       "#c3a46a",
       "#c3a46a",
+      "#c3a46a",
       "#1f210d"
     ],
     source: "https://instagram.fyvr4-1.fna.fbcdn.net/v/t51.2885-15/e35/81782041_540665729863190_6482520691844286583_n.jpg?_nc_ht=instagram.fyvr4-1.fna.fbcdn.net&_nc_cat=102&_nc_ohc=4qL8Bo5rBHEAX8KeyI2&oh=c83ba0eb57469eb2dcc5370f8c05f767&oe=5E9904EA"
@@ -49,6 +52,7 @@ var data = [
     id: 3,
     hexes: [
       "#191f10",
+      "#d0dbde",
       "#d0dbde",
       "#453421",
       "#453421",
@@ -65,6 +69,7 @@ var data = [
       "#3e3e3b",
       "#3e3e3b",
       "#cfdde3",
+      "#cfdde3",
       "#7bb6cd",
       "#608290",
       "#a6c0cb"
@@ -75,6 +80,7 @@ var data = [
     id: 5,
     hexes: [
       "#503d33",
+      "#e7af63",
       "#e7af63",
       "#e7af63",
       "#e7af63",
@@ -91,6 +97,7 @@ var data = [
       "#1d2c24",
       "#1d2c24",
       "#1d2c24",
+      "#1d2c24",
       "#b0c3d2",
       "#d8e2ec",
       "#4a6262"
@@ -101,6 +108,7 @@ var data = [
     id: 7,
     hexes: [
       "#403e31",
+      "#16190e",
       "#16190e",
       "#16190e",
       "#16190e",
@@ -117,6 +125,7 @@ var data = [
       "#161209",
       "#161209",
       "#161209",
+      "#161209",
       "#2a2615",
       "#a1a465",
       "#656337"
@@ -127,6 +136,7 @@ var data = [
     id: 9,
     hexes: [
       "#959593",
+      "#131414",
       "#131414",
       "#2f3136",
       "#2f3136",
@@ -141,6 +151,7 @@ var data = [
     hexes: [
       "#161f1a",
       "#5f6d55",
+      "#5f6d55",
       "#202b23",
       "#202b23",
       "#202b23",
@@ -152,6 +163,7 @@ var data = [
   {
     id: 11,
     hexes: [
+      "#3f3f2e",
       "#3f3f2e",
       "#8a9c9f",
       "#5d5b41",
@@ -200,7 +212,7 @@ const ImagesWrapper = styled.div`
   margin: 5px auto;
 `;
 
-const ProfileGrid = ({ username, datain }) => {
+const ProfileGrid = ({ username, datain, copy }) => {
   data = datain; //uncomment to test 
   return (
     <ProfileContainer>
@@ -210,7 +222,7 @@ const ProfileGrid = ({ username, datain }) => {
       </ProfileDetailsUsername>
       <ImagesWrapper>
         {data.map((item, i) =>
-          <SingleImage image={item.source} hexes={item.hexes} key={i} />
+          <SingleImage copy={copy} image={item.source} hexes={item.hexes} key={i} />
         )
         }
       </ImagesWrapper>

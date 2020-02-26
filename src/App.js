@@ -94,6 +94,16 @@ class App extends Component {
     this.setState({ route: route });
   }
 
+  copy = (hexes) => {
+    var $tempInput = document.createElement('INPUT');
+    var $body = document.getElementsByTagName('body')[0];
+    $body.appendChild($tempInput);
+    $tempInput.setAttribute('value', hexes)
+    $tempInput.select();
+    document.execCommand('copy');
+    $body.removeChild($tempInput);
+  }
+
   render() {
     return (
 
@@ -110,7 +120,7 @@ class App extends Component {
               loading={this.state.loading}
             />
           </div>
-          <ProfileGrid username={this.state.finalUsername} datain={this.state.images} />
+          <ProfileGrid copy={this.copy} username={this.state.finalUsername} datain={this.state.images} />
           {this.state.error === true ?
             (this.state.errorMsg === 'notfound' ?
               <h2> Oops! Something isnt right. Make sure the profile exists</h2> :

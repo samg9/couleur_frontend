@@ -17,14 +17,12 @@ const ImageLinkForm = ({ onPaletteSizeChange, onInputChange, onButtonSubmit }) =
           <input className=' f4 pa3 w-70 center' type='tex' onChange={onInputChange} />
 
           <select className="form-control form-control-lg" defaultValue="6" onChange={onPaletteSizeChange}>
-            <option>2</option>
             <option>3</option>
             <option>4</option>
             <option>5</option>
             <option>6</option>
             <option>7</option>
             <option>8</option>
-            <option>9</option>
           </select>
           <button className=' w-30 grow f4 link ph3 pv2 dib white bg-light-purple'
             onClick={onButtonSubmit}
