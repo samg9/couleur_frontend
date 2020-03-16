@@ -3,4 +3,4 @@
 - Makes a request to the backend service (https://github.com/samg9/couleur)
 - Displays posts with color palettes, or displays an error message
 
-![Demo GIF](screenshots/couleur_demo.gif "Demo gif")
+![Demo GIF](screenshots/couleur-demo.gif "Demo gif")
