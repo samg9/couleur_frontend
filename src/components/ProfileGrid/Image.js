@@ -5,7 +5,7 @@ const ImgContainer = styled.div`
   position: relative;
   flex-basis: 100%;
   flex-basis: calc(33.333% - 10px);
-  margin: 3.75em auto;
+  margin: .75em auto;
   cursor: pointer;
   height: 400px;
   transition: 0.5s all ease-in;
@@ -14,12 +14,14 @@ const Img = styled.img`
   cursor: pointer;
   width: 100%;
   height: calc(85% - 50px);
-  margin: 5px auto;
+  margin: -3px;
 `;
 const SwatchColor = styled.img`
-    padding: 10px ;
-    border: 1px solid white ;
-    width: 3em;
+    flex-basis: 100%;
+    margin: 0px 0px 0px 0px;
+    border: .1px solid white ;
+    width: calc(11.7% - 1px);
+    height: 100px;
 `
 
 function Image({ copy, image, hexes }) {
