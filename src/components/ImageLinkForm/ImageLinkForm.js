@@ -5,7 +5,7 @@ const ImageLinkForm = ({ onPaletteSizeChange, onInputChange, onButtonSubmit }) =
 
   return (
     <div>
-      <b className=' w-80 f1 white '>Couleur (beta)</b>
+      <b className=' w-80 f1 white '>Couleur</b>
       <h4 className='light-purple'>Displays color palette for each post on a public instagram account</h4>
       <b className=' w-80 f3 white '>
         Enter instagram username
