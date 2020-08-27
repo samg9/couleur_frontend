@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import ImageLinkForm from './components/ImageLinkForm/ImageLinkForm';
-import ProfileGrid from './components/ProfileGrid/ProfileGrid';
 import './App.css';
 import Particles from 'react-particles-js';
 import { MetroSpinner } from "react-spinners-kit";
@@ -19,14 +18,10 @@ const part_options =
 }
 
 const intialState = {
-  input: '',
-  paletteSize: 6,
-  imageUrl: '',
-  finalUsername: '',
-  images: [],
-  route: 'signin',
-  isSignedIn: true,
+  algo: 'Content Based Filtering',
+  finalUsername: 'Draco Malfoy',
   loading: false,
+  result: '',
   error: false,
   errorMsg: '',
 }
@@ -36,44 +31,42 @@ class App extends Component {
     this.state = intialState;
   }
 
-  onInputChange = (event) => {
-    this.setState({ input: event.target.value });
+  onUserChange = (event) => {
+    this.setState({ finalUsername: event.target.value });
+    console.log(this.state);
   }
 
-  onPaletteSizeChange = (event) => {
-    this.setState({ paletteSize: event.target.value });
+  onAlgoChange = (event) => {
+    this.setState({ algo: event.target.value });
   }
 
   onButtonSubmit = () => {
-    if (this.state.input !== '') {
-      this.setState({
-        loading: true,
-        finalUsername: intialState.finalUsername,
-        images: intialState.images,
-        error: false,
-      })
-      fetch(`https://couleur-be.herokuapp.com/api/palettes?user=${this.state.input}&pal_size=${this.state.paletteSize}`, {
+      console.log("~~~~~~~~~")
+      fetch(`http://127.0.0.1:5000/api/recommendations?name=${this.state.finalUsername}&algo=${this.state.algo}`, { //expect 4 back, take in first and last name
         method: 'GET',
-        headers: { 'Content-Type': 'application/json' }
+        // headers: { 'Content-Type': 'application/json' },
+        // redirect: '*follow, error',
+        // referrerPolicy: 'no-referrer'
       }).then(response => response.json())
         .then((response) => {
+          console.log(response);
           if (response != null) {
             if (response.result.length < 1) {
               this.setState({
-                errorMsg: 'privateAccount',
                 error: true,
                 loading: false,
                 finalUsername: intialState.finalUsername,
-                images: intialState.images
+                result: ''
               })
             }
             this.setState({
               loading: false,
-              finalUsername: this.state.input,
-              images: response.result
+              result: response.result
             })
           }
         }).catch(() => {
+          console.log("EEEEE");
+
           this.setState({
             errorMsg: 'notfound',
             error: true,
@@ -82,26 +75,7 @@ class App extends Component {
             images: intialState.images
           })
         })
-    }
-  }
-
-  onRouteChange = (route) => {
-    if (route === 'signout') {
-      this.setState(intialState);
-    } else if (route === 'home') {
-      this.setState({ isSignedIn: true });
-    }
-    this.setState({ route: route });
-  }
-
-  copy = (hexes) => {
-    var $tempInput = document.createElement('INPUT');
-    var $body = document.getElementsByTagName('body')[0];
-    $body.appendChild($tempInput);
-    $tempInput.setAttribute('value', hexes)
-    $tempInput.select();
-    document.execCommand('copy');
-    $body.removeChild($tempInput);
+    
   }
 
   render() {
@@ -113,19 +87,17 @@ class App extends Component {
           params={part_options}
         />
         <div>
-          <ImageLinkForm onPaletteSizeChange={this.onPaletteSizeChange} onInputChange={this.onInputChange} onButtonSubmit={this.onButtonSubmit} />
+          <ImageLinkForm onAlgoChange={this.onAlgoChange} onUserChange={this.onUserChange} onButtonSubmit={this.onButtonSubmit} />
           <div id="inner">
             <MetroSpinner
               size={150}
               loading={this.state.loading}
             />
           </div>
-          <ProfileGrid copy={this.copy} username={this.state.finalUsername} datain={this.state.images} />
-          {this.state.error === true ?
-            (this.state.errorMsg === 'notfound' ?
-              <h2> Oops! Something isnt right. Make sure the profile exists</h2> :
-              <h2> Oops! Something isnt right. Make sure the profile is public</h2>)
-            : ""}
+    {/* {this.state.result[0].map((item,i)=><h1>{item}</h1>)} */}
+    <h1>{this.state.result[0]}</h1>
+    <h1>{this.state.result[1]}</h1>
+    <h1>{this.state.result[2]}</h1>
 
         </div>
       </div>
