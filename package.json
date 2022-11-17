@@ -9,7 +9,7 @@
     "react-bootstrap": "^1.0.0-beta.17",
     "react-dom": "^16.13.1",
     "react-particles-js": "^2.7.1",
-    "react-scripts": "1.1.4",
+    "react-scripts": "5.0.1",
     "react-spinners-kit": "^1.9.1",
     "react-tilt": "^0.1.4",
     "styled-components": "^4.4.1",
